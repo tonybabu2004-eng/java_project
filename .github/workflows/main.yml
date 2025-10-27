@@ -39,7 +39,7 @@ jobs:
     - name: Build, tag, and push Docker image
       run: |
         IMAGE_TAG=latest
-        REPO_URI=${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY }}
+        REPO_URI=my-repo
         docker build -t $REPO_URI:$IMAGE_TAG .
         docker push $REPO_URI:$IMAGE_TAG
 
