@@ -42,4 +42,10 @@ jobs:
         docker build -t my-repo .
         docker tag my-repo:latest 204615365209.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
         docker push 204615365209.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
+    - name: Deploy to ECS
+      run: |
+        aws ecs update-service \
+          --cluster maven-cluster \
+          --service maven-project-service \
+          --force-new-deployment
 
