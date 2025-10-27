@@ -38,8 +38,8 @@ jobs:
 
     - name: Build, tag, and push Docker image
       run: |
-        IMAGE_TAG=latest
-        REPO_URI=my-repo
-        docker build -t $REPO_URI:$IMAGE_TAG .
-        docker push $REPO_URI:$IMAGE_TAG
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 204615365209.dkr.ecr.us-east-1.amazonaws.com
+        docker build -t my-repo .
+        docker tag my-repo:latest 204615365209.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
+        docker push 204615365209.dkr.ecr.us-east-1.amazonaws.com/my-repo:latest
 
